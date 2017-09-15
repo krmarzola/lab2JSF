@@ -5,8 +5,6 @@
  */
 package com.losalpes.bos;
 
-import java.util.ArrayList;
-
 
 
 /**
@@ -34,7 +32,6 @@ public class Cliente {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-      private ArrayList<Compra> listaCompras; 
 
     public Cliente(String tipoDocumento, String numerodocumento, String nombre, String telefonoResidencia, String direccion, String ciudadResidencia, String departamento, String profesion, String email, Usuario usuario) {
         this.tipoDocumento = tipoDocumento;
@@ -47,7 +44,6 @@ public class Cliente {
         this.profesion = profesion;
         this.email = email;
         this.usuario=usuario;
-        this.listaCompras=null;
     }
 
     public String getTipoDocumento() {
@@ -122,11 +118,4 @@ public class Cliente {
         this.email = email;
     }
 
-    public ArrayList<Compra> getListaCompras() {
-        return listaCompras;
-    }
-
-    public void setListaCompras(ArrayList<Compra> listaCompras) {
-        this.listaCompras = listaCompras;
-    }
 }
