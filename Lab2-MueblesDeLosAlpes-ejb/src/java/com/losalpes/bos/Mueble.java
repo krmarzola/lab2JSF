@@ -45,6 +45,16 @@ public class Mueble
      * Indica si el mueble fue seleccionado
      */
     private boolean seleccion;
+    
+    private Double precio;
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
 
     //-----------------------------------------------------------
     // Constructores
