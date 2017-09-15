@@ -20,15 +20,7 @@ public class Mueble
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
-    private int cantidadInventario;
 
-    public int getCantidadInventario() {
-        return cantidadInventario;
-    }
-
-    public void setCantidadInventario(int cantidadInventario) {
-        this.cantidadInventario = cantidadInventario;
-    }
     /**
      * Referencia que identifica el modelo del mueble en el sistema.
      */
@@ -53,16 +45,6 @@ public class Mueble
      * Indica si el mueble fue seleccionado
      */
     private boolean seleccion;
-    
-    private Double precio;
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
 
     //-----------------------------------------------------------
     // Constructores
@@ -83,14 +65,12 @@ public class Mueble
      * @param descripcion Descripión del mueble
      * @param tipo Tipo de mueble
      */
-    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo, Double precio, int cantidadInventario)
+    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo)
     {
         this.referencia = referencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
-        this.precio = precio;
-        this.cantidadInventario = cantidadInventario;
     }
 
     //-----------------------------------------------------------

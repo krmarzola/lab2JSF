@@ -1,72 +1,186 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * $Id$ Usuario.java
+ * Universidad de los Andes (Bogotá - Colombia)
+ * Departamento de Ingeniería de Sistemas y Computación
+ * Licenciado bajo el esquema Academic Free License version 3.0
+ *
+ * Ejercicio: Muebles de los Alpes
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
+
 package com.losalpes.bos;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- *
- * @author usuario
+ * Clase que representa una compra en el sistema
  */
-public class Compra {
+public class Compra
+{
 
-    public Date getFechaCompra() {
-        return fechaCompra;
+    //-----------------------------------------------------------
+    // Atributos
+    //-----------------------------------------------------------
+
+	/**
+     * Fecha de compra
+     */
+    private Date fechaCompra;
+
+    /**
+     * Número de orden
+     */
+    private int numeroOrden;
+
+    /**
+     * Username del cliente
+     */
+    private String userName;
+
+    /**
+     * Arreglo con los articulos que se van a comprar
+     */
+    private ArrayList<Articulo> articulos;
+
+	 /**
+     * Total de compras
+     */
+    private Double totalCompras;
+
+	 /**
+     * Descripción de la compra
+     */
+    private String descripcionCompra;
+
+	 /**
+     * Detalle de la forma de pago
+     */
+    private Pago pago;
+
+    //-----------------------------------------------------------
+    // Constructores
+    //-----------------------------------------------------------
+
+    /**
+     * Constructor de la clase sin argumentos
+     */
+    public Compra()
+    {
+
     }
 
-    public void setFechaCompra(Date fechaCompra) {
+    /**
+     * 
+     * @param fechaCompra
+     * @param numeroOrden 
+     */
+    public Compra(Date fechaCompra,int numeroOrden)
+    {
         this.fechaCompra = fechaCompra;
-    }
-
-    public String getNumeroOrden() {
-        return numeroOrden;
-    }
-
-    public void setNumeroOrden(String numeroOrden) {
         this.numeroOrden = numeroOrden;
     }
 
-    public Double getTotal() {
-        return total;
-    }
+    //-----------------------------------------------------------
+    // Getters y setters
+    //-----------------------------------------------------------
 
-    public void setTotal(Double total) {
-        this.total = total;
-    }
+	/**
+     * Obtiene la Fecha de compra
+     */
+    private Date getFechaCompra(){
+		return fechaCompra;
+	};
 
-    public TipoPago getTipoPago() {
-        return tipoPago;
-    }
+	 /**
+     * Modificar la Fecha de compra
+     */
+    private void setFechaCompra(Date fechaCompra){
+		this.fechaCompra = fechaCompra;
+	};
 
-    public void setTipoPago(TipoPago tipoPago) {
-        this.tipoPago = tipoPago;
-    }
+    /**
+     * Obtiene Número de orden
+     */
+    private int getNumeroOrden(){
+		return numeroOrden;
+	}
 
-    private Date fechaCompra;
-    private String numeroOrden;
-    private Double total;
-    private TipoPago tipoPago;
+	/**
+     * Modificar Número de orden
+     */
+    private void setNumeroOrden(int numeroOrden){
+		this.numeroOrden = numeroOrden;
+	}
 
-    public ArrayList<Articulo> getListaArticulos() {
-        return listaArticulos;
-    }
+    /**
+     * Obtiene Username del cliente
+     */
+    private String getUserName(){
+		return userName;
+	}
 
-    public void setListaArticulos(ArrayList<Articulo> listaArticulos) {
-        this.listaArticulos = listaArticulos;
-    }
-    private ArrayList<Articulo> listaArticulos;
-    
-    public Compra() {
-        
-    }
-    
-    
-    
-    
-    
-    
+	/**
+     * Modificar Username del cliente
+     */
+    private void setUserName(String userName){
+		this.userName = userName;
+	}
+
+    /**
+     * Obtiene Arreglo con los articulos que se van a comprar
+     */
+    private ArrayList<Articulo> getArticulos(){
+		return articulos;
+	}
+
+	/**
+     * Modifica Arreglo con los articulos que se van a comprar
+     */
+    private void setArticulos(ArrayList<Articulo> articulos){
+		this.articulos = articulos;
+	}
+
+	 /**
+     * Obtiene Total de compras
+     */
+    private Double getTotalCompras(){
+		return totalCompras;
+	}
+
+	/**
+     * Modificar Total de compras
+     */
+    private void setTotalCompras(Double totalCompras){
+		this.totalCompras = totalCompras;
+	}
+
+	 /**
+     * Obtiene Descripción de la compra
+     */
+    private String getDescripcionCompra(){
+		return descripcionCompra;
+	}
+
+	/**
+     * Modificar Descripción de la compra
+     */
+    private void setDescripcionCompra(String descripcionCompra){
+		this.descripcionCompra = descripcionCompra;
+	}
+
+	 /**
+     * Obtiene Detalle de la forma de pago
+     */
+    private Pago getPago(){
+		return pago;
+	}
+
+	/**
+     * Modificar Detalle de la forma de pago
+     */
+    private void setPago(Pago pago){
+		this.pago = pago;
+	}
 }
