@@ -82,14 +82,16 @@ public class LoginBean
         try
         {
             Usuario user = servicio.login(usuario, contraseña);
-            if (user.getTipo() == TipoUsuario.ADMINISTRADOR)
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userName", usuario);
+            return "principal";
+            /*if (user.getTipo() == TipoUsuario.CLIENTE)
             {
-                return "adminuser";
+                return "principal";
             }
             else
             {
                 return "";
-            }
+            }*/
         }
         catch (AutenticacionException ex)
         {

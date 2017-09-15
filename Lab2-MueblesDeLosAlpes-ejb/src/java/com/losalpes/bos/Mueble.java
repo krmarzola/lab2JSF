@@ -47,6 +47,8 @@ public class Mueble
     private boolean seleccion;
     
     private Double precio;
+    
+    private int cantidadInventario;
 
     public Double getPrecio() {
         return precio;
@@ -75,12 +77,14 @@ public class Mueble
      * @param descripcion Descripión del mueble
      * @param tipo Tipo de mueble
      */
-    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo)
+    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo, Double precio,int cantidadInventario)
     {
         this.referencia = referencia;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
+        this.precio = precio;
+        this.cantidadInventario = cantidadInventario;
     }
 
     //-----------------------------------------------------------

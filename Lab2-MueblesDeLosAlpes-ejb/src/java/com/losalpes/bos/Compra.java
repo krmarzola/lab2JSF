@@ -89,98 +89,98 @@ public class Compra
 	/**
      * Obtiene la Fecha de compra
      */
-    private Date getFechaCompra(){
+    public Date getFechaCompra(){
 		return fechaCompra;
 	};
 
 	 /**
      * Modificar la Fecha de compra
      */
-    private void setFechaCompra(Date fechaCompra){
+    public void setFechaCompra(Date fechaCompra){
 		this.fechaCompra = fechaCompra;
 	};
 
     /**
      * Obtiene Número de orden
      */
-    private int getNumeroOrden(){
+    public int getNumeroOrden(){
 		return numeroOrden;
 	}
 
 	/**
      * Modificar Número de orden
      */
-    private void setNumeroOrden(int numeroOrden){
+    public void setNumeroOrden(int numeroOrden){
 		this.numeroOrden = numeroOrden;
 	}
 
     /**
      * Obtiene Username del cliente
      */
-    private String getUserName(){
+    public String getUserName(){
 		return userName;
 	}
 
 	/**
      * Modificar Username del cliente
      */
-    private void setUserName(String userName){
+    public void setUserName(String userName){
 		this.userName = userName;
 	}
 
     /**
      * Obtiene Arreglo con los articulos que se van a comprar
      */
-    private ArrayList<Articulo> getArticulos(){
+    public ArrayList<Articulo> getArticulos(){
 		return articulos;
 	}
 
 	/**
      * Modifica Arreglo con los articulos que se van a comprar
      */
-    private void setArticulos(ArrayList<Articulo> articulos){
+    public void setArticulos(ArrayList<Articulo> articulos){
 		this.articulos = articulos;
 	}
 
 	 /**
      * Obtiene Total de compras
      */
-    private Double getTotalCompras(){
+    public Double getTotalCompras(){
 		return totalCompras;
 	}
 
 	/**
      * Modificar Total de compras
      */
-    private void setTotalCompras(Double totalCompras){
+    public void setTotalCompras(Double totalCompras){
 		this.totalCompras = totalCompras;
 	}
 
 	 /**
      * Obtiene Descripción de la compra
      */
-    private String getDescripcionCompra(){
+    public String getDescripcionCompra(){
 		return descripcionCompra;
 	}
 
 	/**
      * Modificar Descripción de la compra
      */
-    private void setDescripcionCompra(String descripcionCompra){
+    public void setDescripcionCompra(String descripcionCompra){
 		this.descripcionCompra = descripcionCompra;
 	}
 
 	 /**
      * Obtiene Detalle de la forma de pago
      */
-    private Pago getPago(){
+    public Pago getPago(){
 		return pago;
 	}
 
 	/**
      * Modificar Detalle de la forma de pago
      */
-    private void setPago(Pago pago){
+    public void setPago(Pago pago){
 		this.pago = pago;
 	}
 }
