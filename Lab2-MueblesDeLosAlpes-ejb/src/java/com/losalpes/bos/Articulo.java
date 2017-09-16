@@ -12,5 +12,9 @@ package com.losalpes.bos;
 public class Articulo {
     private Mueble mueble;
     private int cantidad ;
+
+    public Articulo(Mueble get) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

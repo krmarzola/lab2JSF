@@ -96,7 +96,7 @@ public class Compra
 	 /**
      * Modificar la Fecha de compra
      */
-    private void setFechaCompra(Date fechaCompra){
+    public void setFechaCompra(Date fechaCompra){
 		this.fechaCompra = fechaCompra;
 	};
 
@@ -110,7 +110,7 @@ public class Compra
 	/**
      * Modificar Número de orden
      */
-    private void setNumeroOrden(int numeroOrden){
+    public void setNumeroOrden(int numeroOrden){
 		this.numeroOrden = numeroOrden;
 	}
 
@@ -124,7 +124,7 @@ public class Compra
 	/**
      * Modificar Username del cliente
      */
-    private void setUserName(String userName){
+    public void setUserName(String userName){
 		this.userName = userName;
 	}
 
@@ -138,7 +138,7 @@ public class Compra
 	/**
      * Modifica Arreglo con los articulos que se van a comprar
      */
-    private void setArticulos(ArrayList<Articulo> articulos){
+    public void setArticulos(ArrayList<Articulo> articulos){
 		this.articulos = articulos;
 	}
 
@@ -152,7 +152,7 @@ public class Compra
 	/**
      * Modificar Total de compras
      */
-    private void setTotalCompras(Double totalCompras){
+    public void setTotalCompras(Double totalCompras){
 		this.totalCompras = totalCompras;
 	}
 
@@ -166,7 +166,7 @@ public class Compra
 	/**
      * Modificar Descripción de la compra
      */
-    private void setDescripcionCompra(String descripcionCompra){
+    public void setDescripcionCompra(String descripcionCompra){
 		this.descripcionCompra = descripcionCompra;
 	}
 
@@ -180,7 +180,7 @@ public class Compra
 	/**
      * Modificar Detalle de la forma de pago
      */
-    private void setPago(Pago pago){
+    public void setPago(Pago pago){
 		this.pago = pago;
 	}
 }
