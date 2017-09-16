@@ -96,7 +96,7 @@ public class Compra
 	 /**
      * Modificar la Fecha de compra
      */
-    public void setFechaCompra(Date fechaCompra){
+    private void setFechaCompra(Date fechaCompra){
 		this.fechaCompra = fechaCompra;
 	};
 
@@ -110,7 +110,7 @@ public class Compra
 	/**
      * Modificar Número de orden
      */
-    public void setNumeroOrden(int numeroOrden){
+    private void setNumeroOrden(int numeroOrden){
 		this.numeroOrden = numeroOrden;
 	}
 
