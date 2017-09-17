@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author user
+ * Implementacion de los servicios del carrito de compras que se le prestan al sistema. [Mock Object]
+ * 
  */
 public class ServicioCarritoMock implements IServicioCarrito{
     
@@ -25,10 +25,24 @@ public class ServicioCarritoMock implements IServicioCarrito{
      * Arreglo con los muebles del sistema
      */
     private ArrayList<Articulo> articulos;
+    
+    /**
+     * Cantidad minina de un producto solicitado
+     */
     private int cantidadMinima = 1;
+    
+    /**
+     * Total de la compra
+     */
     private Double total;
 
-
+    //-----------------------------------------------------------
+    // Constructor
+    //-----------------------------------------------------------
+    
+    /**
+     * Constructor sin argumentos de la clase
+     */
     public ServicioCarritoMock() {
 
         //Inicializa el arreglo de los muebles
@@ -36,7 +50,7 @@ public class ServicioCarritoMock implements IServicioCarrito{
 
     }
     
-            //-----------------------------------------------------------
+    //-----------------------------------------------------------
     // Métodos
     //-----------------------------------------------------------
     
@@ -48,8 +62,6 @@ public class ServicioCarritoMock implements IServicioCarrito{
         return total;
     }
     
-
-
     /**
      * Agrega un mueble al sistema
      * @param mueble Nuevo mueble
@@ -71,6 +83,14 @@ public class ServicioCarritoMock implements IServicioCarrito{
     public List<Articulo> darArticulos()
     {
         return articulos;
+    }
+    
+    /**
+     * Reinicia el carrito de compras
+     */
+    @Override
+    public void reiniciarCarrito(){
+        articulos = new ArrayList<Articulo>();
     }
 
 }

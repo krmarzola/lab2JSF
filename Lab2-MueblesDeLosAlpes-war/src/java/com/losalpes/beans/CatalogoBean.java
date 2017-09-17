@@ -18,6 +18,7 @@ import com.losalpes.servicios.IServicioCatalogo;
 import com.losalpes.servicios.ServicioCatalogoMock;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 
@@ -29,6 +30,20 @@ import javax.faces.model.SelectItem;
 public class CatalogoBean
 {
 
+    /**
+     * @return the muebleSeleccionado
+     */
+    public Mueble getMuebleSeleccionado() {
+        return muebleSeleccionado;
+    }
+
+    /**
+     * @param muebleSeleccionado the muebleSeleccionado to set
+     */
+    public void setMuebleSeleccionado(Mueble muebleSeleccionado) {
+        this.muebleSeleccionado = muebleSeleccionado;
+    }
+
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
@@ -37,6 +52,10 @@ public class CatalogoBean
      * Representa un nuevo mueble a ingresar
      */
     private Mueble mueble;
+    
+
+    
+    private Mueble muebleSeleccionado;
 
     /**
      * Relación con la interfaz que provee los servicios necesarios del catálogo.
@@ -53,7 +72,7 @@ public class CatalogoBean
     public CatalogoBean()
     {
         mueble=new Mueble();
-        catalogo=new ServicioCatalogoMock();
+        catalogo= ServicioCatalogoMock.getInstance();
     }
 
     //-----------------------------------------------------------

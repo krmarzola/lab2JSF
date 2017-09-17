@@ -1,21 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:param name="titulo" value="Carrito" />
+    <ui:define name="body">
+
+
         <h:form id="form">
-           
-             
-                <p:commandButton action="pagar" value="Agregar mas articulos" icon="ui-icon-star" />
-            
+            <h:panelGrid columns="2" style="width:100%">
+                <h:panelGroup>
+                    <p:dataGrid var="articulo" value="#{compraBean.articulos}" columns="1" layout="grid"
+                                rows="12" paginator="true" id="mueble"
+                                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                        <f:facet name="header">
+                            Carrito
+                        </f:facet>
+
+                        <p:panel style="text-align:left">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <h:panelGroup>
+                                    <h:outputText value="Referencia : #{articulo.mueble.referencia}" />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputText value="Nombre : #{articulo.mueble.nombre}" />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputText value="Tipo : #{articulo.mueble.tipo}" />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputLabel for="basic" value="Cantidad: " />
+                                    <p:spinner id="basic" value="#{articulo.cantidad}" maxlength="3">
+                                        <p:ajax update="cantidadAjax form:totalAjax" process="@form" />
+                                    </p:spinner>
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputText value="Precio unitario : $#{articulo.mueble.precio}" />
+                                </h:panelGroup>
+                                <h:panelGroup>
+                                    <h:outputText id="cantidadAjax" value="Costo : $#{articulo.costo}" />
+                                </h:panelGroup>
+
+                            </h:panelGrid>  
+                        </p:panel>
+
+                    </p:dataGrid>
+                </h:panelGroup>
+                <h:panelGroup style="vertical-align:text-top">
+                    <p:panel style="text-align:left">
+                        <h:panelGrid columns="1" style="width:100%">
+                            <h:outputText id="totalAjax" value="Total : $#{compraBean.totalCompra}" />
+                            <p:commandButton action="principal" value="Agregar mas articulos" icon="ui-icon-star" />
+                            <p:commandButton style="background: #00cc66" action="#{compraBean.comprar}" actionListener="#{compraBean.verificarInventario()}" value="Efectuar Pago" icon="ui-icon-star" />
+                        </h:panelGrid>
+                    </p:panel>
+                </h:panelGroup>
+            </h:panelGrid>
         </h:form>
 
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
 

@@ -17,6 +17,34 @@ package com.losalpes.bos;
 public class Mueble
 {
 
+    /**
+     * @return the material
+     */
+    public String getMaterial() {
+        return material;
+    }
+
+    /**
+     * @param material the material to set
+     */
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    /**
+     * @return the cantidadInventario
+     */
+    public int getCantidadInventario() {
+        return cantidadInventario;
+    }
+
+    /**
+     * @param cantidadInventario the cantidadInventario to set
+     */
+    public void setCantidadInventario(int cantidadInventario) {
+        this.cantidadInventario = cantidadInventario;
+    }
+
     //-----------------------------------------------------------
     // Atributos
     //-----------------------------------------------------------
@@ -35,6 +63,8 @@ public class Mueble
      * Descripción del mueble.
      */
     private String descripcion;
+    
+    private String material;
 
     /**
      * Tipo de mueble.
@@ -77,7 +107,7 @@ public class Mueble
      * @param descripcion Descripión del mueble
      * @param tipo Tipo de mueble
      */
-    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo, Double precio,int cantidadInventario)
+    public Mueble(String referencia, String nombre, String descripcion, TipoMueble tipo, Double precio,int cantidadInventario,String material)
     {
         this.referencia = referencia;
         this.nombre = nombre;
@@ -85,6 +115,7 @@ public class Mueble
         this.tipo = tipo;
         this.precio = precio;
         this.cantidadInventario = cantidadInventario;
+        this.material = material;
     }
 
     //-----------------------------------------------------------

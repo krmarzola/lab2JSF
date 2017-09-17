@@ -10,11 +10,29 @@ import com.losalpes.bos.Mueble;
 import java.util.List;
 
 /**
- *
- * @author user
+ * Contrato funcional de los servicios que se le prestan al carrito de compras
  */
 public interface IServicioCarrito {
+    /**
+     * Devuelve el total de la compra
+     * @return total de la compra
+     */
     public Double darTotal();
+    
+    /**
+     * Agrega un articulo al carrito de compras
+     * @param mueble 
+     */
     public void agregarArticulo(Mueble mueble);
+    
+    /**
+     * Devuelve la lista de artículos
+     * @return lista de articulos del carrito de compras
+     */
     public List<Articulo> darArticulos();
+    
+    /**
+     * Reinicia el carrito de compras
+     */
+    public void reiniciarCarrito();
 }

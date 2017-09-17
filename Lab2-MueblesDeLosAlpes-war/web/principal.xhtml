@@ -1,15 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : Principal
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
+    <ui:param name="titulo" value="Bienvenido" />
+    <ui:define name="body">
         <h:form id="form">
             <p:dataGrid var="mueble" value="#{catalogoBean.muebles}" columns="3" layout="grid"
                         rows="12" paginator="true" id="mueble"
@@ -20,55 +22,59 @@
                     Muebles
                 </f:facet>
 
-                <p:panel header="#{mueble.referencia}" style="text-align:center">
+                <p:panel  style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
                         <!--<p:graphicImage name="demo/images/car/#{car.brand}.gif"/> -->
-
-                        <h:outputText value="#{mueble.nombre}" />
-                        <h:outputText value="#{mueble.tipo}" />
-
-
-
-                        <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+                        <h:outputText value="Referencia : #{mueble.referencia}" />
+                        <h:outputText value="Nombre : #{mueble.nombre}" />
+                        <h:outputText value="Material : #{mueble.material}" />
+                        <p:commandLink update=":form:muebleDetalle" oncomplete="PF('muebleDialogo').show()" title="Detalle mueble">
                             <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-                            <f:setPropertyActionListener value="#{mueble}" target="#{catalogoBean.mueble}" />
+                            <f:setPropertyActionListener value="#{mueble}" target="#{catalogoBean.muebleSeleccionado}" />
                         </p:commandLink>
-                        
-                        <p:commandButton action="#{compraBean.agregarArticulo(mueble)}" value="Agregar" icon="ui-icon-star" />
-                        
+                        <p:commandButton style="background: #cc99ff;color: black" action="#{compraBean.agregarArticulo(mueble)}" actionListener="#{compraBean.validarSesion}" value="Agregar" icon="ui-icon-star"  />
+
                     </h:panelGrid>  
                 </p:panel>
 
             </p:dataGrid>
-            
 
 
 
-            <p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                <p:outputPanel id="carDetail" style="text-align:center;">
-                    <p:panelGrid  columns="2" rendered="#{not empty catalogoBean.mueble}" columnClasses="label,value">
-                        <!--<f:facet name="header">
-                            <p:graphicImage name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif"/> 
-                        </f:facet>-->
 
+            <p:dialog header="Detalle" widgetVar="muebleDialogo" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="muebleDetalle" style="text-align:left;">
+                    <p:panelGrid  columns="2" rendered="#{not empty catalogoBean.muebleSeleccionado}" columnClasses="label,value">
                         <h:outputText value="Referencia:" />
-                        <h:outputText value="#{mueble.referencia}" />
+                        <h:outputText value="#{catalogoBean.muebleSeleccionado.referencia}" />
 
                         <h:outputText value="Nombre:" />
-                        <h:outputText value="#{mueble.nombre}" />
+                        <h:outputText value="#{catalogoBean.muebleSeleccionado.nombre}" />
 
                         <h:outputText value="Tipo:" />
-                        <h:outputText value="#{mueble.tipo}" />
+                        <h:outputText value="#{catalogoBean.muebleSeleccionado.tipo}" />
 
-                        <!--<h:outputText value="Color:" />
-                        <h:outputText value="#{dataGridView.selectedCar.color}" style="color:#{dataGridView.selectedCar.color}"/>-->
+                        <h:outputText value="Descripción: " />
+                        <h:outputText value="#{catalogoBean.muebleSeleccionado.descripcion}" />
 
-                        <!--<<h:outputText value="Price" />
-                        <h:outputText value="$#{dataGridView.selectedCar.price}" />-->
+                        <h:outputText value="Material: " />
+                        <h:outputText value="#{catalogoBean.muebleSeleccionado.material}" />
+
+                        <h:outputText value="Precio:" />
+                        <h:outputText value="$#{catalogoBean.muebleSeleccionado.precio}" />
+
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
+            <br />
+            <br />
+         
+            <p:commandButton action="historico" value="Ver Histórico" icon="ui-icon-star" />
+
+            <p:commandButton action="faces/index.xhtml" value="Iniciar sesión" icon="ui-icon-star" />
+
+
         </h:form>
-    </h:body>
-</html>
+    </ui:define>
+</ui:composition>
 
