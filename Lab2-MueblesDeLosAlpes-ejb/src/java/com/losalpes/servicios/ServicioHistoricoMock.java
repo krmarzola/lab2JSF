@@ -48,7 +48,7 @@ public class ServicioHistoricoMock implements IServicioHistorico
     /**
      * Constructor sin argumentos de la clase
      */
-    protected ServicioHistoricoMock()
+    public ServicioHistoricoMock()
     {
 
         //Inicializa el arreglo de los Compras
