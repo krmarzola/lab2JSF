@@ -209,7 +209,7 @@ public class CompraBean {
 
             servicioInventario.actualizarInventario(getArticulos());
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "co", null);
-            return "pagar.xhtml";
+            return "pagar";
         }
     }
 
