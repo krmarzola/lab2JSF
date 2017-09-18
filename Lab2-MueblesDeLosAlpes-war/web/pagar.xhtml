@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:param name="titulo" value="Pagar" />
+    <ui:define name="body">
+        <h:form id="form">
+            Descripción de la venta
+            <br/>
+            <p:panelGrid columns="2" >
+                <h:outputText value="Fecha: " />
+                <h:outputText value="#{compraBean.compra.fechaCompra}">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:outputText>
+
+                <h:outputText value="Referencia: " />
+                <h:outputText value="#{compraBean.compra.numeroOrden}"/>
+
+                <h:outputText value="Valor: " />
+                <h:outputText value="$#{compraBean.compra.totalCompras}"/>
+
+                <h:outputText value="Descripción: " />
+                <h:outputText value="#{compraBean.compra.descripcionCompra}"/>
+            </p:panelGrid>
+            <br/>
+            <br/>
+            <p:separator />
+            Información del Pago
+            <br/>
+            <h:panelGrid columns="2" id="grid" cellpadding="5">
+                <h:panelGroup>
+                    <p:outputLabel for="DdlTipoPago"
+                                   value="Tipo de Pago"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <h:selectOneMenu id="DdlTipoPago" value="#{compraBean.compra.pago.naturaleza}">
+                        <f:selectItems value="#{compraBean.tiposPago}" />
+                    </h:selectOneMenu>
+                </h:panelGroup>
+                
+                <h:panelGroup>
+                    <p:outputLabel for="TxtNombresApellidos"
+                                   value="Nombres y Apellidos"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:inputText id="TxtNombresApellidos"
+                                 size="20"
+                                 maxlength="20"
+                                 label="Referencia"
+                                 value="#{compraBean.nombresApellidos}"
+                                 required="true"
+                                 requiredMessage="El nombre es requerido."
+                                 >
+                        <f:validateLength minimum="1"/>
+                    </p:inputText>
+                    <p:message for="TxtNombresApellidos" />
+
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <p:outputLabel for="TxtReferencia"
+                                   value="Número de la tarjeta"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:inputText id="TxtReferencia"
+                                 size="20"
+                                 maxlength="20"
+                                 label="Referencia"
+                                 value="#{compraBean.compra.pago.numeroTarjeta}"
+                                 required="true"
+                                 requiredMessage="El número de tarjeta es requerido."
+                                 validatorMessage="El número de tarjeta no es válido"
+                                 >
+                         <f:validateLength minimum="1"/>
+                    </p:inputText>
+                   
+                    <p:message for="TxtReferencia" />
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <p:outputLabel for="TxtCodigoSeguridad"
+                                   value="Código de Seguridad"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:inputText id="TxtCodigoSeguridad"
+                                 size="4"
+                                 maxlength="4"
+                                 value="#{compraBean.compra.pago.codigoSeguridad}"
+                                 required="true"
+                                 requiredMessage="El código de seguridad es requerido."
+                                 validatorMessage="El código de seguridad es de 4 digitos"
+                                 >
+                         <f:validateLength minimum="4"/>
+                    </p:inputText>
+                    
+                    <p:message for="TxtCodigoSeguridad" />
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <p:outputLabel value="Fecha de Expiración"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:outputLabel value="Año: "/>
+                    <p:inputText id="TxtAnioExpiracion"
+                                 size="4"
+                                 maxlength="4"
+                                 value="#{compraBean.compra.pago.anioExpiracion}"
+                                 required="true"
+                                 requiredMessage="El año es requerido."
+                                 validatorMessage="Debe seleccionar un año mayor a 2017"
+                                 >
+                        <f:validateDoubleRange minimum="2017"/>
+                    </p:inputText>
+                    <p:message for="TxtAnioExpiracion" />
+                    
+                    <p:outputLabel value="Mes: "/>
+                    <p:inputText id="TxtMesExpiracion"
+                                 size="2"
+                                 maxlength="2"
+                                 value="#{compraBean.compra.pago.mesExpiracion}"
+                                 required="true"
+                                 requiredMessage="El mes es requerido."
+                                 validatorMessage="Debe seleccionar un mes valido."
+                                 >
+                        <f:validateDoubleRange minimum="1" maximum="12"/>
+                    </p:inputText>
+                    <p:message for="TxtMesExpiracion" />
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <p:outputLabel for="TxtCuotas"
+                                   value="Cuotas"/>
+                </h:panelGroup>
+                <h:panelGroup>
+                    <p:inputText id="TxtCuotas"
+                                 size="4"
+                                 maxlength="3"
+                                 label="Referencia"
+                                 value="#{compraBean.compra.pago.numeroCuotas}"
+                                 required="true"
+                                 requiredMessage="El número de cuotas es requerido."
+                                 >
+                        <f:validateLength minimum="1"/>
+                    </p:inputText>
+                    <p:message for="TxtCuotas" />
+                </h:panelGroup>
+            </h:panelGrid>`
+
+            <p:commandButton style="background: #00cc66" update="grid" action ="#{compraBean.pagar}" actionListener="#{compraBean.mensajeConfirmacion}" value="Pagar" icon="ui-icon-star" />
+            
+               
+        </h:form>
+   </ui:define>
+</ui:composition>

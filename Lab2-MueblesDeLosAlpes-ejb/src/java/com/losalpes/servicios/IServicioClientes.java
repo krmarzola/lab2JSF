@@ -20,12 +20,22 @@ public interface IServicioClientes {
     public ArrayList<Cliente> darClientes();
     
     public Cliente darClienteByUsuario(Usuario usuario);
+    public Cliente darClienteByUserName(String userName);
+   public ArrayList<Cliente> darClienteByNombre(String nombre);
+ 
     
-    public Cliente darClienteByDocumento(String documento);
-    
-    public Cliente darClienteByNombre(String nombre);
-    
-    public Cliente darClienteByEmail(String email);
+   public ArrayList<Cliente> darClienteByEmail(String email);
+    public ArrayList<Cliente> darClienteByPais(String pais);
+     public ArrayList<Cliente> darClienteByDepartamento(String departamento);
+     public ArrayList<Cliente> darClienteByCiudad(String ciudad);
+     public ArrayList<Cliente> darClienteByDireccion(String direcccion);
+      public ArrayList<Cliente> darClienteByProfesion(String profesion);
+       public ArrayList<Cliente> darClienteByTelefono(String telefono);
+        public ArrayList<Cliente> darClienteByCelular(String celular);
+        public ArrayList<Cliente> darClienteByTipoDocumento(String tipoDocumento);
+        public void deleteCliente(Cliente cliente);
+        public void updateCliente(Cliente cliente);
+        public ArrayList<Cliente> darClienteByDocumento(String documento);
     
     
 }

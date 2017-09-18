@@ -50,7 +50,9 @@
         </h:form>
         
         <h:form>
-            <h:commandButton value="Reistrarse" action="#{loginBean.registro}" />
+            <p:commandLink action="#{loginBean.registroListener}" value="Registro"  ajax="false"/>
+        <!--<h:form>
+            <h:commandButton value="Reistrarse" action="#{loginBean.registro}" /> -->
         </h:form>
     </ui:define>
 </ui:composition>

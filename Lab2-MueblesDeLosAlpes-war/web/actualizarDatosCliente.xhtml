@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:define name="body">
+
+        <h:form>
+            <h:panelGroup>
+                <h:outputText value="Datos Personales" /> 
+                <h:panelGrid width="100px" columns="3" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputText value="Nomnbre: " />                 
+                    <p:inputText id ="nombre" 
+                                 value = "#{adminClientesBean.selectedCliente.nombre}"
+                                 required="true" 
+                                 label="Nombre"
+                                 >  
+                        <p:messages for ="nombre" autoUpdate="true" />
+                    </p:inputText>
+
+                </h:panelGrid>
+                <h:panelGrid width="100px" columns="6" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputText value="Tipo Documento: " />                   	
+                    <p:selectOneMenu id="tipodoc" value="#{adminClientesBean.selectedCliente.tipoDocumento}">
+                        <f:selectItems value="#{registroBean.tiposDocumento}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Numero Documento: " />                    	
+                    <p:inputText id="numeroDoc" 
+                                 value = "#{adminClientesBean.selectedCliente.numeroDocumento}"
+                                 required="true" 
+                                 label="Numero documento"
+                                 validator = "#{adminClientesBean.validateUniqueDocument}"
+                                 >
+                        <p:messages for ="numeroDoc" autoUpdate="true" />
+                    </p:inputText>                  
+
+                </h:panelGrid>
+                <h:panelGrid width="100px" columns="6" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputText value="Telefono Residencia: " />                    	
+                    <p:inputText
+                        id="telefonoResidencia"
+                        value = "#{adminClientesBean.selectedCliente.telefonoResidencia}"
+                        required="true" 
+                        label="Telefono Residencia"
+                        >
+                        <p:messages for ="telefonoResidencia" autoUpdate="true" />
+
+                    </p:inputText> 
+                    <h:outputText value="Telefono Celular: " />                    	
+                    <p:inputText
+                        id="telefonoCelular"
+                        value = "#{adminClientesBean.selectedCliente.telefonoCelular}"                         
+                        label="Telefono Celular"
+                        >    
+                        <p:messages for ="telefonoCelular" autoUpdate="true" />
+                    </p:inputText> 
+
+                    <h:outputText value="País: " />                    	
+                    <p:inputText 
+                        id ="pais"
+                        value = "#{adminClientesBean.selectedCliente.pais}"
+                        required="true" 
+                        label="pais"
+                        >
+                        <p:messages for ="pais" autoUpdate="true" />
+                    </p:inputText> 
+                    <h:outputText value="Departamento: " />                    	
+                    <p:inputText
+                        id="departamento"
+                        value ="#{adminClientesBean.selectedCliente.departamento}"
+                        required="true" 
+                        label="Departamento"  
+                        >
+                        <p:messages for ="departamento" autoUpdate="true" />
+                    </p:inputText> 
+                    <h:outputText value="Ciudad: " />                    	
+                    <p:inputText 
+                        id ="ciudad"
+                        value = "#{adminClientesBean.selectedCliente.ciudadResidencia}"
+                        required="true" 
+                        label="ciudad"
+                        >
+                        <p:messages for ="ciudad" autoUpdate="true" />
+                    </p:inputText> 
+                    <h:outputText value="Dirección: " />                    	
+                    <p:inputText id ="direccion" 
+                                 value = "#{adminClientesBean.selectedCliente.direccion}"
+                                 >
+                          <p:messages for ="direccion" autoUpdate="true" />
+                     </p:inputText>  
+                    <h:outputText value="Profesión: " />                    	
+                    <p:inputText id ="profesion" 
+                                 value = "#{adminClientesBean.selectedCliente.profesion}"
+                                 >
+                        <p:messages for ="profesion" autoUpdate="true" />
+                    </p:inputText>  
+                    <h:outputText value="Email: " />                    	
+                    <p:inputText id="mail" 
+                                 value = "#{adminClientesBean.selectedCliente.email}"
+                                 required="true" 
+                                 label="Email"
+                                 validatorMessage="No corresponde a la estructura de un Email"
+                                 >
+                        <p:messages for ="mail" autoUpdate="true" />
+                        <f:validateRegex
+                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                    </p:inputText> 
+                </h:panelGrid>
+
+
+                <h:commandButton value="Salvar Informacion" action = "#{adminClientesBean.updateCliente}"/>
+            </h:panelGroup>
+
+
+        </h:form>
+        <h:form>
+
+            <h:commandButton value="Cancelar" action ="#{adminClientesBean.returnEdit}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

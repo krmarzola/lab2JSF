@@ -22,6 +22,39 @@
             <from-outcome>muebles</from-outcome>
             <to-view-id>/catalogo.xhtml</to-view-id>
         </navigation-case>
+         <navigation-case>
+            <from-outcome>clientes</from-outcome>
+            <to-view-id>/adminClientes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/registroCliente.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+      <navigation-rule>
+        <from-view-id>/adminClientes.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>actualizarValores</from-outcome>
+            <to-view-id>/actualizarDatosCliente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>adminMenu</from-outcome>
+            <to-view-id>/adminMenu.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+     <navigation-rule>
+        <from-view-id>/actualizarDatosCliente.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editClientes</from-outcome>
+            <to-view-id>/adminClientes.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
 </faces-config>

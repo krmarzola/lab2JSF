@@ -5,12 +5,21 @@
  */
 package com.losalpes.beans;
 
+import com.losalpes.bos.Cliente;
+import com.losalpes.bos.TipoDocumento;
+import com.losalpes.bos.TipoMueble;
 import com.losalpes.bos.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import com.losalpes.servicios.ServicioClientesMock;
+import java.util.ArrayList;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -19,123 +28,135 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 public class RegistroBean {
 
-      private String usuario;
-      private String contraseña;
-      private String contraseña2;
-      private String tipoDocumento;
-      private String numerodocumento;
-      private String nombre;
-      private String telefonoResidencia;
-      private String direccion;
-      private String ciudadResidencia;
-      private String departamento;
-      private String profesion;
-      private String email;
-      
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public String getContraseña2() {
-        return contraseña2;
-    }
-
-    public void setContraseña2(String contraseña2) {
-        this.contraseña2 = contraseña2;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-   
+    
+     private Cliente cliente;
      
-    public String getTipoDocumento() {
-        return tipoDocumento;
+     private UIInput paswordComponet;
+
+    public UIInput getPaswordComponet() {
+        return paswordComponet;
     }
 
-    public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
+    public void setPaswordComponet(UIInput paswordComponet) {
+        this.paswordComponet = paswordComponet;
     }
 
-    public String getNumerodocumento() {
-        return numerodocumento;
+  
+    public Cliente getCliente() {
+        return cliente;
+        
     }
 
-    public void setNumerodocumento(String numerodocumento) {
-        this.numerodocumento = numerodocumento;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+     
+      private String password;
+
+    public String getPassword() {
+        return password;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getTelefonoResidencia() {
-        return telefonoResidencia;
-    }
-
-    public void setTelefonoResidencia(String telefonoResidencia) {
-        this.telefonoResidencia = telefonoResidencia;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getCiudadResidencia() {
-        return ciudadResidencia;
-    }
-
-    public void setCiudadResidencia(String ciudadResidencia) {
-        this.ciudadResidencia = ciudadResidencia;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public String getProfesion() {
-        return profesion;
-    }
-
-    public void setProfesion(String profesion) {
-        this.profesion = profesion;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+       
     
     /**
      * Creates a new instance of ReristroBean
      */
     public RegistroBean()
     {
+        this.cliente= new Cliente();
+        this.paswordComponet=null;
+        
     }
     
-    
+     public SelectItem[] getTiposDocumento()
+    {
+        TipoDocumento[] tiposdoc=  TipoDocumento.values();
+        SelectItem[] sitems = new SelectItem[tiposdoc.length];
+        
+        for (int i = 0; i < sitems.length; i++)
+        {
+             sitems[i] = new SelectItem(tiposdoc[i]);
+        }
+        return sitems;
+    }
+     
+     public void validateSamePassword(FacesContext context, UIComponent toValidate,Object value)
+     {
+         
+         if (!value.equals(this.paswordComponet.getValue()))
+         {
+              ((UIInput) toValidate).setValid(false);
+        FacesMessage message = new FacesMessage("Las Contraseñas no coincide");
+        context.addMessage(toValidate.getClientId(context), message);
+         }
+     
+     }
+     
+     public void validateUniqueUserName(FacesContext context, UIComponent toValidate,Object value)
+     { ArrayList<Cliente> listaClientes = ServicioClientesMock.darServicioClientesMock().darClientes();
+     
+      for (Cliente cliente : listaClientes)
+      {
+      if (value.equals(cliente.getUsuario().getNombre()))
+         {
+              ((UIInput) toValidate).setValid(false);
+        FacesMessage message = new FacesMessage("El nombre de usuario ya existe");
+        context.addMessage(toValidate.getClientId(context), message);
+        return;
+         }
+      }
+     }
+     
+       public void validateUniqueDocument(FacesContext context, UIComponent toValidate,Object value)
+     { ArrayList<Cliente> listaClientes = ServicioClientesMock.darServicioClientesMock().darClientes();
+     
+      for (Cliente pcliente : listaClientes)
+      {
+      if (value.equals(pcliente.getNumeroDocumento()))
+         {
+              ((UIInput) toValidate).setValid(false);
+        FacesMessage message = new FacesMessage("El docuemto ya existe en la base de datos");
+        context.addMessage(toValidate.getClientId(context), message);
+         return;
+         }
+      }
+     }
+       
+       public String registrarCliente()
+       {
+           ServicioClientesMock.darServicioClientesMock().darClientes().add(this.cliente);
+           mensajeConfirmacion();
+           limpiar();
+           return "login";
+       
+       }
+     public void limpiar()
+             
+     {
+         this.cliente= new Cliente();
+     }
+     public String loginReturn()
+     {
+         limpiar();
+         return "login";
+     }
+     
+      public void MensajeCreacion() {
+        addMessage("Creación de Usuario","Usuario Credo Con exito");
+    }
+     
+      
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    public void mensajeConfirmacion() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Información",
+                "Usuario Credo Con exito");
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+    }
 }

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:param name="titulo" value="Histórico" />
+    <ui:define name="body">
+        <h:form id="form">
+            <p:dataGrid var="compra" value="#{historicoBean.compras}" columns="3" layout="grid"
+                        rows="12" paginator="true" id="compra"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+
+                <f:facet name="header">
+                    Compras
+                </f:facet>
+
+                <p:panel style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <!--<p:graphicImage name="demo/images/car/#{car.brand}.gif"/> -->
+
+                        <h:outputText value="Usuario: #{compra.userName}" />
+                        
+                        <h:outputText value="Fecha de compra: #{compra.fechaCompra}" />
+                        
+                        <h:outputText value="Descripción: #{compra.descripcionCompra}" />
+                        
+                        <h:outputText value="Naturaleza: #{compra.pago.naturaleza}" />
+                        
+                        
+                        
+                    </h:panelGrid>  
+                </p:panel>
+
+            </p:dataGrid>
+            <p:commandButton action="principal" value="Principal" icon="ui-icon-star" />
+        </h:form>
+   </ui:define>
+</ui:composition>
+

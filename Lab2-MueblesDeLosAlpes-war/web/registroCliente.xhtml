@@ -6,32 +6,164 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui">
 
-       
 
-            <ui:define name="body">
-                 <h:form>
-                <h:panelGroup>
+
+    <ui:define name="body">
+        <h:form>
+            <h:panelGroup>
                 <h:panelGrid width="100px" columns="2" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
                     <h:outputText value="Usuario: " />                    	
-                    <p:inputText value = "#{registroBean.usuario}"/>
-                    <h:outputText value="Clave: " />
-                    <p:password id="clave1" feedback="true" required="true" value = "#{registroBean.contraseña}" />                     
-                     <h:outputText value="Confirme Clave: " />
-                     <p:password id="clave2" feedback="true" required="true" value = "#{registroBean.contraseña2}" />
-                  </h:panelGrid>
-                    
-                    <p:spacer height="10" />
- 
-                 <p:separator />
-                    
-                  <h:panelGrid width="100px" columns="2" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
-                 <h:outputText value="Usuario: " />                    	
-                    <p:inputText value = "#{registroBean.usuario}"/>
-                  </h:panelGrid>
-                </h:panelGroup>
-                     
-                 </h:form>
-               
-            </ui:define>
+                    <p:inputText id ="usuario" 
+                                 value = "#{registroBean.cliente.usuario.nombre}"
+                                 label="Usuario"
+                                 required="true"
+                                 validator = "#{registroBean.validateUniqueUserName}"
+                                 >
+                        <p:messages for ="usuario" autoUpdate="true" />                                                
+                    </p:inputText>
 
-   </ui:composition>
+                </h:panelGrid>
+                <h:panelGrid width="100px" columns="6" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputText value="Clave: " />
+                    <p:password id="clave1" 
+                                feedback="true" 
+                                required="true" 
+                                value = "#{registroBean.cliente.usuario.contraseña}"  
+                                binding="#{registroBean.paswordComponet}"
+                                label="Clave"
+                                >                     
+                         <f:validateLength minimum="6" maximum="15" />
+                        <p:messages for ="clave1" autoUpdate="true" />    
+                    </p:password>                  
+
+                    <h:outputText value="Confirme Clave: " />
+                    <p:password id="clave2" 
+                                feedback="true" 
+                                required="true" 
+                                value = "#{registroBean.password}" 
+                                validator ="#{registroBean.validateSamePassword}"
+                                label="Confirmar Clave"
+                                >
+                           <f:validateLength minimum="6" maximum="15" />
+                        <p:messages for ="clave2" autoUpdate="true" />
+                    </p:password>
+                </h:panelGrid>
+
+                <p:spacer height="10" />
+                <p:separator />
+
+                <h:outputText value="Datos Personales" /> 
+                <h:panelGrid width="100px" columns="3" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputText value="Nomnbre: " />                 
+                    <p:inputText id ="nombre" 
+                                 value = "#{registroBean.cliente.nombre}"
+                                 required="true" 
+                                 label="Nombre"
+                                 >  
+                        <p:messages for ="nombre" autoUpdate="true" />
+                    </p:inputText>
+
+                </h:panelGrid>
+                <h:panelGrid width="100px" columns="6" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputText value="Tipo Documento: " />                   	
+                    <p:selectOneMenu id="tipodoc" value="#{registroBean.cliente.tipoDocumento}">
+                        <f:selectItems value="#{registroBean.tiposDocumento}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Numero Documento: " />                    	
+                    <p:inputText id="numeroDoc" 
+                                 value = "#{registroBean.cliente.numeroDocumento}"
+                                 required="true" 
+                                 label="Numero documento"
+                                 validator = "#{registroBean.validateUniqueDocument}"
+                                 >
+                        <p:messages for ="numeroDoc" autoUpdate="true" />
+                    </p:inputText>                  
+
+                </h:panelGrid>
+                <h:panelGrid width="100px" columns="6" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+                    <h:outputText value="Telefono Residencia: " />                    	
+                    <p:inputText
+                        id="telefonoResidencia"
+                        value = "#{registroBean.cliente.telefonoResidencia}"
+                        required="true" 
+                        label="Telefono Residencia"
+                        >
+                        <p:messages for ="telefonoResidencia" autoUpdate="true" />
+                        
+                    </p:inputText> 
+                    <h:outputText value="Telefono Celular: " />                    	
+                    <p:inputText
+                        id="telefonoCelular"
+                        value = "#{registroBean.cliente.telefonoCelular}"                         
+                        label="Telefono Celular"
+                        >    
+                         <p:messages for ="telefonoCelular" autoUpdate="true" />
+                    </p:inputText> 
+                    
+                      <h:outputText value="País: " />                    	
+                    <p:inputText 
+                        id ="pais"
+                        value = "#{registroBean.cliente.pais}"
+                         required="true" 
+                        label="pais"
+                        >
+                         <p:messages for ="pais" autoUpdate="true" />
+                     </p:inputText> 
+                      
+                    <h:outputText value="Departamento: " />                    	
+                    <p:inputText
+                        id="departamento"
+                        value ="#{registroBean.cliente.departamento}"
+                        required="true" 
+                        label="Departamento"  
+                                 >
+                         <p:messages for ="departamento" autoUpdate="true" />
+                     </p:inputText> 
+                    
+                   
+                    <h:outputText value="Ciudad: " />                    	
+                    <p:inputText 
+                        id ="ciudad"
+                        value = "#{registroBean.cliente.ciudadResidencia}"
+                         required="true" 
+                        label="ciudad"
+                        >
+                         <p:messages for ="ciudad" autoUpdate="true" />
+                     </p:inputText> 
+                    <h:outputText value="Dirección: " />                    	
+                    <p:inputText id ="direccion" 
+                                 value = "#{registroBean.cliente.direccion}"
+                                 >
+                          <p:messages for ="direccion" autoUpdate="true" />
+                     </p:inputText>  
+                    <h:outputText value="Profesión: " />                    	
+                    <p:inputText id ="profesion" 
+                                 value = "#{registroBean.cliente.profesion}"
+                                 >
+                          <p:messages for ="profesion" autoUpdate="true" />
+                     </p:inputText>  
+                    <h:outputText value="Email: " />                    	
+                    <p:inputText id="mail" 
+                                 value = "#{registroBean.cliente.email}"
+                                 required="true" 
+                                label="Email"
+                                validatorMessage="No corresponde a la estructura de un Email"
+                                 >
+                         <p:messages for ="mail" autoUpdate="true" />
+                          <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText> 
+                </h:panelGrid>
+            </h:panelGroup>
+
+            <h:commandButton value="Crear Cliente" action = "#{registroBean.registrarCliente()}" actionListener="#{registroBean.mensajeConfirmacion()}"/>
+            
+           
+        </h:form>
+        <h:form>
+            <h:commandButton value="Limpiar" action="#{registroBean.limpiar()}" />
+             <h:commandButton value="Login" action ="#{registroBean.loginReturn()}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

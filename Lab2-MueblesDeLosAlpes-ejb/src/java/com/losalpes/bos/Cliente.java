@@ -14,16 +14,51 @@ package com.losalpes.bos;
 
 public class Cliente {
 
-      private String tipoDocumento;
-      private String numerodocumento;
+    public Cliente(String nombre, TipoDocumento tipoDocumento, String numeroDocumento, String pais, String departamento, String ciudadResidencia, String direccion, String profesion, String email, String telefonoResidencia, String telefonoCelular, Usuario usuario) {
+        this.nombre = nombre;
+        this.tipoDocumento = tipoDocumento;
+        this.numeroDocumento = numeroDocumento;
+        this.pais = pais;
+        this.departamento = departamento;
+        this.ciudadResidencia = ciudadResidencia;
+        this.direccion = direccion;
+        this.profesion = profesion;
+        this.email = email;
+        this.telefonoResidencia = telefonoResidencia;
+        this.telefonoCelular = telefonoCelular;
+        this.usuario = usuario;
+    }
       private String nombre;
-      private String telefonoResidencia;
-      private String direccion;
-      private String ciudadResidencia;
+      private TipoDocumento tipoDocumento;
+      private String numeroDocumento;
+      private String pais;
       private String departamento;
+      private String ciudadResidencia;      
+      private String direccion;            
       private String profesion;
-      private String email;
+      private String email;      
+      private String telefonoResidencia;
+      private String telefonoCelular;
       private Usuario usuario;
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+      
+      
+    public String getTelefonoCelular() {
+        return telefonoCelular;
+    }
+
+    public void setTelefonoCelular(String telefonoCelular) {
+        this.telefonoCelular = telefonoCelular;
+    }
+    
+      
 
     public Usuario getUsuario() {
         return usuario;
@@ -33,33 +68,25 @@ public class Cliente {
         this.usuario = usuario;
     }
 
-    public Cliente(String tipoDocumento, String numerodocumento, String nombre, String telefonoResidencia, String direccion, String ciudadResidencia, String departamento, String profesion, String email, Usuario usuario) {
-        this.tipoDocumento = tipoDocumento;
-        this.numerodocumento = numerodocumento;
-        this.nombre = nombre;
-        this.telefonoResidencia = telefonoResidencia;
-        this.direccion = direccion;
-        this.ciudadResidencia = ciudadResidencia;
-        this.departamento = departamento;
-        this.profesion = profesion;
-        this.email = email;
-        this.usuario=usuario;
+    public Cliente()
+    {
+        this.usuario = new Usuario();
     }
-
-    public String getTipoDocumento() {
+    
+    public TipoDocumento getTipoDocumento() {
         return tipoDocumento;
     }
 
-    public void setTipoDocumento(String tipoDocumento) {
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public String getNumerodocumento() {
-        return numerodocumento;
+    public String getNumeroDocumento() {
+        return numeroDocumento;
     }
 
-    public void setNumerodocumento(String numerodocumento) {
-        this.numerodocumento = numerodocumento;
+    public void setNumeroDocumento(String numerodocumento) {
+        this.numeroDocumento = numerodocumento;
     }
 
     public String getNombre() {

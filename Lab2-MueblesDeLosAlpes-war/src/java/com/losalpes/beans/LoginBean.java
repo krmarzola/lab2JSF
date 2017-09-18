@@ -55,9 +55,18 @@ public class LoginBean
      */
     private boolean error;
 
+    private String registro="";
     //-----------------------------------------------------------
     // Constructor
     //-----------------------------------------------------------
+
+    public String getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(String registro) {
+        this.registro = registro;
+    }
 
     /**
      * Constructor de la clase
@@ -65,7 +74,7 @@ public class LoginBean
     public LoginBean()
     {
         error=false;
-        servicio=ServicioSeguridadMock.darServicioSeguridadMock();
+        servicio=new ServicioSeguridadMock();
     }
 
     //-----------------------------------------------------------
@@ -81,14 +90,18 @@ public class LoginBean
        
         try
         {
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             Usuario user = servicio.login(usuario, contraseña);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("userName", usuario);
             if (user.getTipo() == TipoUsuario.ADMINISTRADOR)
             {
+                
                 return "adminuser";
             }
             else
             {
-                return "";
+                
+                return "principal";
             }
         }
         catch (AutenticacionException ex)
@@ -100,9 +113,10 @@ public class LoginBean
         }
     }
     
-    public String registro()
+    public String registroListener()
     {
         System.out.println("Entro...");
+        this.registro="registro";
       return "registro";
       
     }

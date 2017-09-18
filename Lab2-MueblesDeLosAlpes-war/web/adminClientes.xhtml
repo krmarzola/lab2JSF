@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+
+    <ui:define  name="body">
+        <p:spacer height="10" />
+
+        <p:tabView >
+            
+            <p:tab id="tconsulta" title="Consulta Clientes" >
+
+
+                <h:form id="formconsulta">  
+                    <h:panelGrid width="100px" columns="3" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+
+                        <h:outputText value="Parmetro Busqueda: " />                   	
+                        <p:selectOneMenu id="parametro" value="#{adminClientesBean.parametroConsulta}">
+                            <f:selectItems value="#{adminClientesBean.listaParametros}" />
+                        </p:selectOneMenu>
+                        <p:inputText id="valor"  value = "#{adminClientesBean.valorParametroConsulta}"/>  
+                        <p:commandButton id="btConsulta" value="Consultar" actionListener="#{adminClientesBean.consultarClientes()}" update="tbClientesConsulta" />
+
+                    </h:panelGrid>
+                    <p:dataTable 
+                        id="tbClientesConsulta" 
+                        var="client" 
+                        value="#{adminClientesBean.listaClientes}" 
+
+                        scrollable="false"
+                        scrollHeight="100px"
+                        paginator="true"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        resizableColumns="true"
+                        rows="10"
+                        
+                        >
+
+
+
+                        <p:column headerText="Usuario">
+                            <h:outputText value="#{client.usuario.nombre}" />
+                        </p:column>                  
+                        <p:columns
+                            value="#{adminClientesBean.columns}"
+                            var="column" 
+                            columnIndexVar="colIndex" 
+                            sortBy="#{client[column.property]}" 
+                            >
+                            <f:facet name="header">
+                                <h:outputText value="#{column.header}" />
+                            </f:facet>
+                            <h:outputText value="#{client[column.property]}" />
+                        </p:columns>
+
+                    </p:dataTable>
+                    <p:spacer height="10" />
+                </h:form>
+            </p:tab>
+
+            <p:tab id="tedicion" title="Eliminación y Edicion de Clientes">
+                <h:form id="formEdit"> 
+                    <h:panelGrid width="100px" columns="3" cellpadding="5" columnClasses="pnlGrdClass, pnlGrdClass, pnlGrdClassLong">
+
+                        <h:outputText value="Parmetro Busqueda: " />                   	
+                        <p:selectOneMenu id="parametroEdicion" value="#{adminClientesBean.parametroConsultaEdicion}">
+                            <f:selectItems value="#{adminClientesBean.listaParametrosEdicion}" />
+                        </p:selectOneMenu>
+                        <p:inputText id="valorEdicion"  value = "#{adminClientesBean.valorParametroConsultaEdicion}"/>  
+                        <p:commandButton id="btConsultaEdicion" value="Consultar" actionListener="#{adminClientesBean.consultarClientesEdicion}" update="tbClientesEdicion" />
+
+                    </h:panelGrid>
+                    <p:dataTable 
+                        id="tbClientesEdicion" 
+                        var="clientEdit" 
+                        value="#{adminClientesBean.listaClientesEdicion}"                     
+                           
+                        rows="10"
+                                                
+                        resizableColumns="true"
+                        selectionMode="single"
+                        selection="#{adminClientesBean.selectedCliente}" 
+                        rowKey="#{clientEdit.numeroDocumento}"
+
+                             >   
+
+
+                        <p:columns
+                            value="#{adminClientesBean.columnsEdicion}"
+                            var="columnEdit" 
+                            columnIndexVar="colIndex" 
+                            sortBy="#{clientEdit[columnEdit.property]}" 
+                            >
+                            <f:facet name="header">
+                                <h:outputText value="#{columnEdit.header}" />
+                            </f:facet>
+                            <h:outputText value="#{clientEdit[columnEdit.property]}" />
+                        </p:columns>
+                        <f:facet name="footer">
+                            <p:growl id="message" showDetail="true" />
+                            <p:commandButton value="Eliminar Cliente" actionListener="#{adminClientesBean.deleteCliente}" update="tbClientesEdicion :j_idt12:formconsulta:tbClientesConsulta">
+                                <p:confirm header="Eliminar Cliente" message="Esta Seguro de Eliminar el Cliente?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                            <p:commandButton value="Editar" action="#{adminClientesBean.updateValuaes}"/>
+
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                            </p:confirmDialog>
+                        </f:facet>
+                    </p:dataTable>
+                    <p:spacer height="10" />
+                    
+                </h:form>
+            </p:tab>                
+        </p:tabView>
+        <h:form>
+            <p:commandButton id="volver" value="Volver Menu" action="#{adminClientesBean.volverMenu()}" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>

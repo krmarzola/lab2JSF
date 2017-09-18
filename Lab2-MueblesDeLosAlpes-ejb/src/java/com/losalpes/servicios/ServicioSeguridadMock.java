@@ -34,7 +34,7 @@ public class ServicioSeguridadMock implements IServicioSeguridad
      * Arreglo con los usuarios del sistema
      */
     private ArrayList<Usuario> usuarios;
-    private static ServicioSeguridadMock esteServicioSeguridadMock=null;
+   
     //-----------------------------------------------------------
     // Métodos
     //-----------------------------------------------------------
@@ -42,19 +42,10 @@ public class ServicioSeguridadMock implements IServicioSeguridad
     /**
      *
      */
-    private ServicioSeguridadMock()
+    public ServicioSeguridadMock()
     {
-        //Inicializa el arreglo que contiene los usuarios
-        usuarios=new ArrayList<Usuario>();
-
-        //Agrega usuarios al sistema
-        usuarios.add(new Usuario("admin","adminadmin",TipoUsuario.ADMINISTRADOR));
-        usuarios.add(new Usuario("client","clientclient",TipoUsuario.CLIENTE));
-         ArrayList<Cliente> listaClientes = ServicioClientesMock.darServicioClientesMock().darClientes();
-         
-       
-        
-       
+   
+         crearListaDeUsuarios();
         
     }
     
@@ -73,15 +64,7 @@ public class ServicioSeguridadMock implements IServicioSeguridad
          }
     }
     
-    public static ServicioSeguridadMock darServicioSeguridadMock()
-    {
-     if (esteServicioSeguridadMock==null)
-     {
-         esteServicioSeguridadMock=new ServicioSeguridadMock();
-
-     }
-     return esteServicioSeguridadMock;
-    }
+   
 
     //-----------------------------------------------------------
     // Métodos
